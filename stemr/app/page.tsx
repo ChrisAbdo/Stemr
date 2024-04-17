@@ -80,12 +80,6 @@ export default function Home() {
   }, [uploadedUrl]);
 
   React.useEffect(() => {
-    if (uploadedUrl) {
-      handleSubmit();
-    }
-  }, [uploadedUrl]);
-
-  React.useEffect(() => {
     const audioElements = document.getElementsByTagName("audio");
     const playPromises = [];
 
@@ -162,7 +156,7 @@ export default function Home() {
 
           <h1 className="text-sm">vocals</h1>
           <Visualizer
-            audioUrl={extractedStems.vocals}
+            audioUrl={genData.vocals}
             mute={isVocalsMuted}
             onToggleMute={() => setVocalsMuted(!isVocalsMuted)}
             isPlaying={isPlaying}
@@ -172,7 +166,7 @@ export default function Home() {
             <div className="flex items-center space-x-4">
               <h1 className="text-sm">bass</h1>
               <Visualizer
-                audioUrl={extractedStems.bass}
+                audioUrl={genData.bass}
                 mute={isBassMuted}
                 onToggleMute={() => setBassMuted(!isBassMuted)}
                 isPlaying={isPlaying}
@@ -191,7 +185,7 @@ export default function Home() {
             </Button>
             <div className="flex items-center space-x-4">
               <Visualizer
-                audioUrl={extractedStems.other}
+                audioUrl={genData.other}
                 mute={isOtherMuted}
                 onToggleMute={() => setOtherMuted(!isOtherMuted)}
                 isPlaying={isPlaying}
@@ -200,7 +194,7 @@ export default function Home() {
             </div>
           </div>
           <Visualizer
-            audioUrl={extractedStems.drums}
+            audioUrl={genData.drums}
             mute={isDrumsMuted}
             onToggleMute={() => setDrumsMuted(!isDrumsMuted)}
             isPlaying={isPlaying}
