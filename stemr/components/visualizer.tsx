@@ -74,7 +74,11 @@ export default function Visualizer({
         }
       }
 
-      const newScale = 1 + maxVolume / 256;
+      // Calculate scale with a maximum cap
+      const maxScaleCap = 1.5; // Adjust this value to set your desired maximum scale
+      const baseScale = 1;
+      const newScale = Math.min(maxScaleCap, baseScale + maxVolume / 256);
+
       setScale(newScale);
 
       requestAnimationFrame(draw);
