@@ -89,9 +89,9 @@ export default function Visualizer({
   };
 
   const handleInteraction = (event) => {
-    event.preventDefault(); // Prevent default to stop any browser specific gestures
-    initAudioAndPlay();
-    onToggleMute();
+    event.preventDefault(); // Helps avoid any default behavior that might prevent audio from playing
+    onToggleMute(); // Ensures mute toggles on every click
+    initAudioAndPlay(); // Start playing or continue playing the audio
   };
 
   const backgroundClass = mute ? "bg-muted" : "bg-primary";
@@ -103,8 +103,7 @@ export default function Visualizer({
         transform: `scale(${scale})`,
       }}
       className={`w-[50px] h-[50px] cursor-pointer rounded-full ${backgroundClass}`}
-      onPointerDown={handleInteraction}
-      onTouchStart={handleInteraction} // Added to specifically handle touch events
+      onClick={handleInteraction} // Using onClick to handle all interactions
     >
       <audio
         ref={audioRef}
