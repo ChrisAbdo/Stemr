@@ -1,11 +1,5 @@
 // @ts-nocheck
 /*
-{
-  bass: 'https://replicate.delivery/pbxt/f09dTehfTTV9uJviVHapWUKky5Hf0EFVOgjrhfzpZPBicIPVC/bass.mp3',
-  drums: 'https://replicate.delivery/pbxt/Xqt3j7IlM0Z4O9Z273YfOW7WSDZ9A6oT3Db3qCCjfY7lD5pSA/drums.mp3',
-  other: 'https://replicate.delivery/pbxt/MYXzWwLSbrZvORueS3FPj8NyisPIlQNe9T3JHHfZ7l5LHyTlA/other.mp3',
-  vocals: 'https://replicate.delivery/pbxt/LhbfIVeFEVt83kQfEUQTU8DUwJ6AVfl2aau3IfaFKjyhcIPVC/vocals.mp3'
-}
 
 https://replicate.delivery/pbxt/LflQA55n3fgD30ZTeg9Pgj8FO2AZt4UV4A25TgKCGwiDIjTlA/drums.mp3
 */
@@ -37,6 +31,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Loader } from "@/components/ui/loader";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -51,15 +46,15 @@ export default function Home() {
   const [isBassMuted, setBassMuted] = React.useState(false);
   const [isOtherMuted, setOtherMuted] = React.useState(false);
 
-  // const extractedStems = {
-  //   vocals:
-  //     "https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3",
-  //   drums:
-  //     "https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3",
-  //   bass: "https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3",
-  //   other:
-  //     "https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3",
-  // };
+  const extractedStems = {
+    vocals:
+      "https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3",
+    drums:
+      "https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3",
+    bass: "https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3",
+    other:
+      "https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3",
+  };
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -76,6 +71,12 @@ export default function Home() {
     setLoading(false);
     setGenData(data);
   };
+
+  React.useEffect(() => {
+    if (uploadedUrl) {
+      handleSubmit();
+    }
+  }, [uploadedUrl]);
 
   React.useEffect(() => {
     if (uploadedUrl) {
@@ -109,48 +110,11 @@ export default function Home() {
         });
     }
   }, [isPlaying]);
-  return (
-    // <div className="bg-background">
-    //   <div className="relative isolate px-6 pt-14 lg:px-8">
-    //     <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-    //       <div className="text-center">
-    //         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-    //           Web Stem Player
-    //         </h1>
-    //         <p className="mt-6 text-lg leading-8 text-gray-600">
-    //           web stem player is a web application that allows you to separate
-    //           the vocals, drums, bass, and other instruments from a song.
-    //         </p>
-    //         <div className="mt-10 flex items -center justify-center">
-    // <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
-    //   <DrawerTrigger asChild>
-    //     <Button>Upload Song</Button>
-    //   </DrawerTrigger>
-    //   <DrawerContent className="h-2/3">
-    //     <DrawerHeader>
-    //       <DrawerTitle>Upload a song to split stems</DrawerTitle>
-    //       <DrawerDescription>
-    //         Accepted file types: mp3, wav
-    //       </DrawerDescription>
-    //       <Uploader
-    //         onUploadComplete={(url) => {
-    //           setDrawerOpen(false);
-    //           setUploadedUrl(url);
-    //         }}
-    //       />{" "}
-    //     </DrawerHeader>
-    //     <DrawerFooter>
-    //       <DrawerClose>
-    //         <Button variant="outline">Cancel</Button>
-    //       </DrawerClose>
-    //     </DrawerFooter>
-    //   </DrawerContent>
-    // </Drawer>
-    //         </div>
 
-    //         {loading && (
-    //           <p>Loading your stems &rparr; this may take a while...</p>
-    //         )}
+  return (
+    // {loading && (
+    //   <p>Loading your stems &rparr; this may take a while...</p>
+    // )}
     //         <Button onClick={() => setIsPlaying(!isPlaying)}>
     //           {isPlaying ? "Pause" : "Play"}
     //         </Button>
@@ -227,12 +191,20 @@ export default function Home() {
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
+
+          {loading && (
+            <>
+              <Loader />
+              <p>Loading your stems &rparr; this may take a while...</p>
+            </>
+          )}
+
           <div className="mt-12" />
           {/* VISUALIZER LAYOUT */}
 
           <h1>vocals</h1>
           <Visualizer
-            audioUrl={genData.vocals}
+            audioUrl={extractedStems.vocals}
             mute={isVocalsMuted}
             onToggleMute={() => setVocalsMuted(!isVocalsMuted)}
             isPlaying={isPlaying}
@@ -242,7 +214,7 @@ export default function Home() {
             <div className="flex items-center space-x-4">
               <h1>bass</h1>
               <Visualizer
-                audioUrl={genData.bass}
+                audioUrl={extractedStems.bass}
                 mute={isBassMuted}
                 onToggleMute={() => setBassMuted(!isBassMuted)}
                 isPlaying={isPlaying}
@@ -261,7 +233,7 @@ export default function Home() {
             </Button>
             <div className="flex items-center space-x-4">
               <Visualizer
-                audioUrl={genData.other}
+                audioUrl={extractedStems.other}
                 mute={isOtherMuted}
                 onToggleMute={() => setOtherMuted(!isOtherMuted)}
                 isPlaying={isPlaying}
@@ -270,7 +242,7 @@ export default function Home() {
             </div>
           </div>
           <Visualizer
-            audioUrl={genData.drums}
+            audioUrl={extractedStems.drums}
             mute={isDrumsMuted}
             onToggleMute={() => setDrumsMuted(!isDrumsMuted)}
             isPlaying={isPlaying}
@@ -278,7 +250,6 @@ export default function Home() {
           <h1>drums</h1>
         </div>
       </section>
-      {/* <Guide /> */}
 
       <div className="p-2">
         <Guide />
