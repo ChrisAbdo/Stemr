@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/accordion";
 import { Loader } from "@/components/ui/loader";
 import UsageGuide from "@/components/usage-guide";
+import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -152,11 +153,8 @@ export default function Home() {
         <div className="container flex flex-col items-center justify-center gap-4 px-4 text-center md:px-6">
           <div className="space-y-3">
             <h1 className="text-3xl font-normal tracking-tighter sm:text-4xl md:text-5xl">
-              Stemmer
+              Your music, deconstructed.
             </h1>
-            <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Deconstruct your favorite songs into stems and remix them.
-            </p>
           </div>
           {/* <Link
           className="inline-flex h-10 items-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
@@ -199,7 +197,7 @@ export default function Home() {
             </>
           )}
 
-          <div className="mt-12" />
+          <div className="mt-6" />
           {/* VISUALIZER LAYOUT */}
 
           <h1 className="text-sm">vocals</h1>
@@ -250,6 +248,7 @@ export default function Home() {
           <h1 className="text-sm">drums</h1>
         </div>
 
+        <Separator className="w-1/2 mx-auto mt-6" />
         <UsageGuide />
       </section>
     </>
