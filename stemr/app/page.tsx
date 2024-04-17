@@ -24,7 +24,6 @@ import Visualizer from "@/components/visualizer";
 import Link from "next/link";
 import { AudioLines } from "lucide-react";
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons";
-import { Guide } from "@/components/guide";
 import {
   Accordion,
   AccordionContent,
@@ -32,6 +31,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Loader } from "@/components/ui/loader";
+import UsageGuide from "@/components/usage-guide";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -148,7 +148,7 @@ export default function Home() {
     //   </div>
     // </div>
     <>
-      <section className="w-full py-6 md:py-12 lg:py-16">
+      <section className="w-full">
         <div className="container flex flex-col items-center justify-center gap-4 px-4 text-center md:px-6">
           <div className="space-y-3">
             <h1 className="text-3xl font-normal tracking-tighter sm:text-4xl md:text-5xl">
@@ -202,7 +202,7 @@ export default function Home() {
           <div className="mt-12" />
           {/* VISUALIZER LAYOUT */}
 
-          <h1>vocals</h1>
+          <h1 className="text-sm">vocals</h1>
           <Visualizer
             audioUrl={extractedStems.vocals}
             mute={isVocalsMuted}
@@ -212,7 +212,7 @@ export default function Home() {
 
           <div className="flex items-center space-x-20 mt-14 mb-14">
             <div className="flex items-center space-x-4">
-              <h1>bass</h1>
+              <h1 className="text-sm">bass</h1>
               <Visualizer
                 audioUrl={extractedStems.bass}
                 mute={isBassMuted}
@@ -238,7 +238,7 @@ export default function Home() {
                 onToggleMute={() => setOtherMuted(!isOtherMuted)}
                 isPlaying={isPlaying}
               />
-              <h1>other</h1>
+              <h1 className="text-sm">other</h1>
             </div>
           </div>
           <Visualizer
@@ -247,13 +247,11 @@ export default function Home() {
             onToggleMute={() => setDrumsMuted(!isDrumsMuted)}
             isPlaying={isPlaying}
           />
-          <h1>drums</h1>
+          <h1 className="text-sm">drums</h1>
         </div>
-      </section>
 
-      <div className="p-2">
-        <Guide />
-      </div>
+        <UsageGuide />
+      </section>
     </>
   );
 }

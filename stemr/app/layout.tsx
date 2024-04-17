@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/lib/theme-provider";
 import Navbar from "@/components/layout/navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { GeistMono } from "geist/font/mono";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,6 +28,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <TailwindIndicator />
 
           <Toaster position="top-center" />
         </ThemeProvider>
