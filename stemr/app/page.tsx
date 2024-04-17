@@ -182,7 +182,7 @@ export default function Home() {
                     setDrawerOpen(false);
                     setUploadedUrl(url);
                   }}
-                />{" "}
+                />
               </DrawerHeader>
               <DrawerFooter>
                 <DrawerClose>

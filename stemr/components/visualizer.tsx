@@ -92,15 +92,15 @@ export default function Visualizer({
     if (onToggleMute) onToggleMute();
   };
 
+  const backgroundClass = mute ? "bg-muted" : "bg-primary";
+
   return (
     <div
       style={{
         transition: "transform 0.05s ease-in-out",
         transform: `scale(${scale})`,
       }}
-      className={`w-[50px] h-[50px] bg-primary cursor-pointer rounded-full ${
-        mute ? "bg-muted" : ""
-      }`}
+      className={`w-[50px] h-[50px] cursor-pointer rounded-full ${backgroundClass}`}
       onClick={handleOnClick}
     >
       <audio
