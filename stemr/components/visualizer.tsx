@@ -13,7 +13,6 @@ https://replicate.delivery/pbxt/LflQA55n3fgD30ZTeg9Pgj8FO2AZt4UV4A25TgKCGwiDIjTl
 
 // TO DO: CONDITIONALS FOR INSTURMENTS so other show up if returns null.
 
-// @ts-nocheck
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 
@@ -77,8 +76,7 @@ export default function Visualizer({
         }
       }
 
-      // Calculate scale with a maximum cap
-      const maxScaleCap = 1.5; // Adjust this value to set your desired maximum scale
+      const maxScaleCap = 1.5; // Maximum scale
       const baseScale = 1;
       const newScale = Math.min(maxScaleCap, baseScale + maxVolume / 256);
 
@@ -90,9 +88,10 @@ export default function Visualizer({
     requestAnimationFrame(draw);
   };
 
-  const handleInteraction = () => {
+  const handleInteraction = (event) => {
+    event.preventDefault(); // Prevent default to stop any browser specific gestures
     initAudioAndPlay();
-    if (onToggleMute) onToggleMute();
+    onToggleMute();
   };
 
   const backgroundClass = mute ? "bg-muted" : "bg-primary";
@@ -104,11 +103,12 @@ export default function Visualizer({
         transform: `scale(${scale})`,
       }}
       className={`w-[50px] h-[50px] cursor-pointer rounded-full ${backgroundClass}`}
-      onPointerDown={handleInteraction} // This handles both click and touch
+      onPointerDown={handleInteraction}
+      onTouchStart={handleInteraction} // Added to specifically handle touch events
     >
       <audio
         ref={audioRef}
-        crossOrigin="anonymous" // CORS requires crossOrigin for external audio sources
+        crossOrigin="anonymous"
         src={audioUrl}
         muted={mute}
       />
