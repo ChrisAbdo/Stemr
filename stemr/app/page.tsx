@@ -150,8 +150,8 @@ export default function Home() {
     // </div>
     <>
       <section className="w-full">
-        <div className="container flex flex-col items-center justify-center gap-4 px-4 text-center md:px-6">
-          <div className="space-y-3">
+        <div className="container flex flex-col items-center justify-center gap-2 px-4 text-center md:px-6">
+          <div>
             <h1 className="text-3xl font-normal tracking-tighter sm:text-4xl md:text-5xl">
               Your music, deconstructed.
             </h1>
@@ -248,7 +248,7 @@ export default function Home() {
           <h1 className="text-sm">drums</h1>
         </div>
 
-        <Separator className="w-1/2 mx-auto mt-6" />
+        <Separator className="w-1/2 mx-auto mt-24" />
         <UsageGuide />
       </section>
     </>
