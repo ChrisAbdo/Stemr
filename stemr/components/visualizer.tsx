@@ -13,6 +13,7 @@ https://replicate.delivery/pbxt/LflQA55n3fgD30ZTeg9Pgj8FO2AZt4UV4A25TgKCGwiDIjTl
 
 // TO DO: CONDITIONALS FOR INSTURMENTS so other show up if returns null.
 
+// @ts-nocheck
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 
@@ -37,7 +38,7 @@ export default function Visualizer({
 
     if (!audioContextRef.current) {
       const audioContext = new AudioContext();
-      audioContextRef.current = new AudioContext();
+      audioContextRef.current = audioContext;
       const analyser = audioContext.createAnalyser();
       analyser.fftSize = 2048;
       analyserRef.current = analyser;
@@ -56,11 +57,13 @@ export default function Visualizer({
     audioRef.current.play();
     visualize();
   };
+
   useEffect(() => {
     if (isPlaying) {
       initAudioAndPlay();
     }
   }, [isPlaying]);
+
   const visualize = () => {
     if (!analyserRef.current || !dataArrayRef.current) return;
 
@@ -87,7 +90,7 @@ export default function Visualizer({
     requestAnimationFrame(draw);
   };
 
-  const handleOnClick = () => {
+  const handleInteraction = () => {
     initAudioAndPlay();
     if (onToggleMute) onToggleMute();
   };
@@ -101,12 +104,11 @@ export default function Visualizer({
         transform: `scale(${scale})`,
       }}
       className={`w-[50px] h-[50px] cursor-pointer rounded-full ${backgroundClass}`}
-      onClick={handleOnClick}
+      onPointerDown={handleInteraction} // This handles both click and touch
     >
       <audio
         ref={audioRef}
-        // CORS requires crossOrigin for external audio sources
-        crossOrigin="anonymous"
+        crossOrigin="anonymous" // CORS requires crossOrigin for external audio sources
         src={audioUrl}
         muted={mute}
       />
