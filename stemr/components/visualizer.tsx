@@ -99,7 +99,7 @@ export default function Visualizer({
   return (
     <div
       style={{
-        transition: "transform 0.05s ease-in-out",
+        transition: "transform 0.05s ease-in-out, background-color 0.3s ease",
         transform: `scale(${scale})`,
       }}
       className={`w-[50px] h-[50px] cursor-pointer rounded-full ${backgroundClass}`}

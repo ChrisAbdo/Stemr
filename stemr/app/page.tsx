@@ -113,41 +113,6 @@ export default function Home() {
   }, [isPlaying]);
 
   return (
-    // {loading && (
-    //   <p>Loading your stems &rparr; this may take a while...</p>
-    // )}
-    //         <Button onClick={() => setIsPlaying(!isPlaying)}>
-    //           {isPlaying ? "Pause" : "Play"}
-    //         </Button>
-
-    //         <Visualizer
-    //           audioUrl={genData.other}
-    //           mute={isOtherMuted}
-    //           onToggleMute={() => setOtherMuted(!isOtherMuted)}
-    //           isPlaying={isPlaying}
-    //         />
-    //         <Visualizer
-    //           audioUrl={genData.bass}
-    //           mute={isBassMuted}
-    //           onToggleMute={() => setBassMuted(!isBassMuted)}
-    //           isPlaying={isPlaying}
-    //         />
-    // <Visualizer
-    //   audioUrl={genData.vocals}
-    //   mute={isVocalsMuted}
-    //   onToggleMute={() => setVocalsMuted(!isVocalsMuted)}
-    //   isPlaying={isPlaying}
-    // />
-    //         <Visualizer
-    //           audioUrl={genData.drums}
-    //           mute={isDrumsMuted}
-    //           onToggleMute={() => setDrumsMuted(!isDrumsMuted)}
-    //           isPlaying={isPlaying}
-    //         />
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <>
       <section className="w-full">
         <div className="container flex flex-col items-center justify-center gap-2 px-4 text-center md:px-6">
@@ -156,12 +121,7 @@ export default function Home() {
               Your music, deconstructed.
             </h1>
           </div>
-          {/* <Link
-          className="inline-flex h-10 items-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-          href="#"
-        >
-          Download Now
-        </Link> */}
+
           <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger asChild>
               <Button>
