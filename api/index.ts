@@ -10,7 +10,7 @@ console.log("Starting server on port 3001");
 
 Bun.serve({
   hostname: "::",
-  port: 3001,
+  port: process.env.PORT || 3001,
   fetch: async (request: Request) => {
     try {
       const { searchParams } = new URL(request.url);
