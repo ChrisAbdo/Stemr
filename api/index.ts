@@ -8,6 +8,14 @@ const replicate = new Replicate({
 
 console.log("Starting server on port 3001");
 
+const headers = {
+  base: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  },
+};
+
 Bun.serve({
   hostname: "::",
   port: process.env.PORT || 3001,
@@ -38,6 +46,7 @@ Bun.serve({
         status: 200,
         headers: {
           "Content-Type": "application/json",
+          ...headers.base,
         },
       });
     } catch (error) {

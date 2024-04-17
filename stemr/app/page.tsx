@@ -64,12 +64,12 @@ export default function Home() {
   const handleSubmit = async () => {
     setLoading(true);
     const response = await fetch(
-      "https://stemr-production.up.railway.app/?audioUrl=https://vyzfg1hdiv0uevlh.public.blob.vercel-storage.com/1MXMOVF-dqGavlr9FKG31NHHeUwerO0G3uRKHY.mpeg",
+      "https://stemr-production-f0bf.up.railway.app/?audioUrl=https://vyzfg1hdiv0uevlh.public.blob.vercel-storage.com/1MXMOVF-dqGavlr9FKG31NHHeUwerO0G3uRKHY.mpeg",
       {
-        method: "POST",
-        body: JSON.stringify({
-          audioUrl: uploadedUrl,
-        }),
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
     const data = await response.json();
