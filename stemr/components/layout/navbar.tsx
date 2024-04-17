@@ -5,11 +5,19 @@ import Link from "next/link";
 import {
   EraserIcon,
   GitHubLogoIcon,
+  QuestionMarkCircledIcon,
   ScissorsIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { ModeToggle } from "@/components/layout/mode-toggle";
 import { Button } from "../ui/button";
 
@@ -38,6 +46,36 @@ export default function Navbar() {
           </button>
         </div>
         <div className="flex items-center space-x-1">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size="icon" variant="ghost">
+                <QuestionMarkCircledIcon className="w-[1.2rem] h-[1.2rem]" />
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>About Stemr</DialogTitle>
+                <DialogDescription>
+                  Stemr is a web based implementation of the Stem Player,
+                  inspired by{" "}
+                  <Link href="https://stem.tech/" className="underline">
+                    STEM.TECH
+                  </Link>
+                  <br />
+                  <br />
+                  <span className="font-bold">Tech Used:</span>
+                  <br />
+                  <Link
+                    href="https://replicate.com/cjwbw/demucs"
+                    className="hover:underline"
+                  >
+                    - Replicate + Demucs Model
+                  </Link>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+
           <Socials />
           <ModeToggle />
         </div>

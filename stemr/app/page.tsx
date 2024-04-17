@@ -21,15 +21,9 @@ import {
 import { Button } from "@/components/ui/button";
 import Uploader from "@/components/uploader";
 import Visualizer from "@/components/visualizer";
-import Link from "next/link";
 import { AudioLines } from "lucide-react";
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
 import { Loader } from "@/components/ui/loader";
 import UsageGuide from "@/components/usage-guide";
 import { Separator } from "@/components/ui/separator";
@@ -47,15 +41,15 @@ export default function Home() {
   const [isBassMuted, setBassMuted] = React.useState(false);
   const [isOtherMuted, setOtherMuted] = React.useState(false);
 
-  const extractedStems = {
-    vocals:
-      "https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3",
-    drums:
-      "https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3",
-    bass: "https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3",
-    other:
-      "https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3",
-  };
+  // const extractedStems = {
+  //   vocals:
+  //     "https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3",
+  //   drums:
+  //     "https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3",
+  //   bass: "https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3",
+  //   other:
+  //     "https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3",
+  // };
 
   const handleSubmit = async () => {
     setLoading(true);
