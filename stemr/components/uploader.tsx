@@ -74,7 +74,7 @@ export default function Uploader({
       <div>
         <label
           htmlFor="image-upload"
-          className="group relative mt-2 flex h-72 cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50"
+          className="group relative mt-2 flex h-72 cursor-pointer flex-col items-center justify-center rounded-md border bg-background shadow-sm transition-all hover:bg-gray-50"
         >
           <div
             className="absolute z-[5] h-full w-full rounded-md"
@@ -121,14 +121,14 @@ export default function Uploader({
               dragActive ? "border-2 border-black" : ""
             } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
               data.image
-                ? "bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
-                : "bg-white opacity-100 hover:bg-gray-50"
+                ? "bg-background/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
+                : "bg-background opacity-100 hover:bg-muted"
             }`}
           >
             <svg
               className={`${
                 dragActive ? "scale-110" : "scale-100"
-              } h-7 w-7 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
+              } h-7 w-7 text-muted-foreground transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -143,10 +143,10 @@ export default function Uploader({
               <path d="M12 12v9"></path>
               <path d="m16 16-4-4-4 4"></path>
             </svg>
-            <p className="mt-2 text-center text-sm text-gray-500">
+            <p className="mt-2 text-center text-sm text-muted-foreground">
               Drag and drop or click to upload.
             </p>
-            <p className="mt-2 text-center text-sm text-gray-500">
+            <p className="mt-2 text-center text-sm text-muted-foreground">
               Max file size: 50MB
             </p>
             <span className="sr-only">Photo upload</span>

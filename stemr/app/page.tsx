@@ -8,30 +8,16 @@ https://replicate.delivery/pbxt/LflQA55n3fgD30ZTeg9Pgj8FO2AZt4UV4A25TgKCGwiDIjTl
 
 "use client";
 import React from "react";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
-import Uploader from "@/components/uploader";
-import Visualizer from "@/components/visualizer";
-import { AudioLines, MousePointer, MousePointerClick } from "lucide-react";
-import { PauseIcon, PlayIcon } from "@radix-ui/react-icons";
+
+import { MousePointer, MousePointerClick } from "lucide-react";
 
 import { Loader } from "@/components/ui/loader";
-import { Separator } from "@/components/ui/separator";
 import StemPlayer from "@/components/stem-player";
+import UploadSong from "@/components/upload-song";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const [uploadedUrl, setUploadedUrl] = React.useState("");
-  const [audioUrlValue, setAudioUrlValue] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [genData, setGenData] = React.useState({} as any);
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -83,19 +69,17 @@ export default function Home() {
         playPromises.push(audioElements[i].play());
       } else {
         audioElements[i].pause();
-        audioElements[i].currentTime = 0; // Optionally reset the time to ensure all tracks start from the beginning
+        audioElements[i].currentTime = 0;
       }
     }
 
     if (isPlaying) {
       Promise.all(playPromises)
         .then(() => {
-          // All audio tracks have started playing
           console.log("Playing");
         })
         .catch((error) => {
           console.error("Error playing audio:", error);
-          // Handle any errors (e.g., user hasn't interacted with the document yet)
         });
     }
   }, [isPlaying]);
@@ -110,33 +94,11 @@ export default function Home() {
             </h1>
           </div>
 
-          <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
-            <DrawerTrigger asChild>
-              <Button className="mt-6">
-                <AudioLines className="h-[1.2rem] w-[1.2rem] mr-2" />
-                Upload Song
-              </Button>
-            </DrawerTrigger>
-            <DrawerContent className="h-2/3">
-              <DrawerHeader>
-                <DrawerTitle>Upload a song to split stems</DrawerTitle>
-                <DrawerDescription>
-                  Accepted file types: mp3, wav
-                </DrawerDescription>
-                <Uploader
-                  onUploadComplete={(url) => {
-                    setDrawerOpen(false);
-                    setUploadedUrl(url);
-                  }}
-                />
-              </DrawerHeader>
-              <DrawerFooter>
-                <DrawerClose>
-                  <Button variant="outline">Cancel</Button>
-                </DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+          <UploadSong
+            isDrawerOpen={isDrawerOpen}
+            setDrawerOpen={setDrawerOpen}
+            setUploadedUrl={setUploadedUrl}
+          />
 
           <div className="flex flex-col mt-6 gap-2">
             <div className="flex gap-2">
@@ -152,10 +114,10 @@ export default function Home() {
           <div className="mt-6" />
 
           {loading && (
-            <>
+            <div className="bg-muted p-4 rounded-full space-y-2">
               <Loader />
               <p>Extracting stems. This may take a while...</p>
-            </>
+            </div>
           )}
 
           <StemPlayer
