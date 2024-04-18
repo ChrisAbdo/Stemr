@@ -14,6 +14,7 @@ import { MousePointer, MousePointerClick } from "lucide-react";
 import { Loader } from "@/components/ui/loader";
 import StemPlayer from "@/components/stem-player";
 import UploadSong from "@/components/upload-song";
+import { toast } from "sonner";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -51,6 +52,7 @@ export default function Home() {
     const data = await response.json();
     setLoading(false);
     setGenData(data);
+    toast.success("Stems extracted successfully!");
   };
 
   React.useEffect(() => {

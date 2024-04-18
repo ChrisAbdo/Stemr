@@ -94,7 +94,11 @@ export default function Visualizer({
     initAudioAndPlay();
   };
 
-  const backgroundClass = mute ? "bg-muted-foreground" : "bg-primary";
+  const backgroundClass = audioUrl
+    ? mute
+      ? "bg-muted-foreground"
+      : "bg-primary"
+    : "bg-muted";
 
   return (
     <div
