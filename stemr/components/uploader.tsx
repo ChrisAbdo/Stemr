@@ -74,7 +74,7 @@ export default function Uploader({
       <div>
         <label
           htmlFor="image-upload"
-          className="group relative mt-2 flex h-72 cursor-pointer flex-col items-center justify-center rounded-md border bg-background shadow-sm transition-all hover:bg-gray-50"
+          className="group relative mt-2 flex h-72 cursor-pointer flex-col items-center justify-center rounded-md border bg-background shadow-sm transition-all hover:bg-muted"
         >
           <div
             className="absolute z-[5] h-full w-full rounded-md"
@@ -152,12 +152,6 @@ export default function Uploader({
             <span className="sr-only">Photo upload</span>
           </div>
           {data.image && (
-            // eslint-disable-next-line @next/next/no-img-element
-            // <img
-            //   src={data.image}
-            //   alt="Preview"
-            //   className="h-full w-full rounded-md object-cover"
-            // />
             <audio controls className="z-50">
               <source src={data.image} type="audio/mpeg" />
               Your browser does not support the audio element.
