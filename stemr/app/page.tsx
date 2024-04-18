@@ -4,8 +4,6 @@
 https://replicate.delivery/pbxt/LflQA55n3fgD30ZTeg9Pgj8FO2AZt4UV4A25TgKCGwiDIjTlA/drums.mp3
 */
 
-// TODO: ADD A DEFAULT SONG TO PLAY WHEN NO SONG IS UPLOADED
-
 "use client";
 import React from "react";
 
