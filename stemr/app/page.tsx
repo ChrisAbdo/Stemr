@@ -21,12 +21,12 @@ import {
 import { Button } from "@/components/ui/button";
 import Uploader from "@/components/uploader";
 import Visualizer from "@/components/visualizer";
-import { AudioLines } from "lucide-react";
+import { AudioLines, MousePointer, MousePointerClick } from "lucide-react";
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons";
 
 import { Loader } from "@/components/ui/loader";
-import UsageGuide from "@/components/usage-guide";
 import { Separator } from "@/components/ui/separator";
+import StemPlayer from "@/components/stem-player";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -102,7 +102,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="w-full">
+      <section className="w-full mt-4">
         <div className="container flex flex-col items-center justify-center gap-2 px-4 text-center md:px-6">
           <div>
             <h1 className="text-3xl font-normal tracking-tighter sm:text-4xl md:text-5xl">
@@ -112,7 +112,7 @@ export default function Home() {
 
           <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger asChild>
-              <Button>
+              <Button className="mt-6">
                 <AudioLines className="h-[1.2rem] w-[1.2rem] mr-2" />
                 Upload Song
               </Button>
@@ -138,66 +138,40 @@ export default function Home() {
             </DrawerContent>
           </Drawer>
 
+          <div className="flex flex-col mt-6 gap-2">
+            <div className="flex gap-2">
+              <MousePointer className="h-[1.2rem] w-[1.2rem]" />
+              <p className="text-sm">Press to mute/unmute stems</p>
+            </div>
+            <div className="flex gap-2">
+              <MousePointerClick className="h-[1.2rem] w-[1.2rem]" />
+              <p className="text-sm">Press and hold to isolate stems</p>
+            </div>
+          </div>
+
+          <div className="mt-6" />
+
           {loading && (
             <>
               <Loader />
-              <p>Loading your stems &rparr; this may take a while...</p>
+              <p>Extracting stems. This may take a while...</p>
             </>
           )}
 
-          <div className="mt-6" />
-          {/* VISUALIZER LAYOUT */}
-
-          <h1 className="text-sm">vocals</h1>
-          <Visualizer
-            audioUrl={genData.vocals}
-            mute={isVocalsMuted}
-            onToggleMute={() => setVocalsMuted(!isVocalsMuted)}
+          <StemPlayer
+            genData={genData}
             isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            isVocalsMuted={isVocalsMuted}
+            setVocalsMuted={setVocalsMuted}
+            isDrumsMuted={isDrumsMuted}
+            setDrumsMuted={setDrumsMuted}
+            isBassMuted={isBassMuted}
+            setBassMuted={setBassMuted}
+            isOtherMuted={isOtherMuted}
+            setOtherMuted={setOtherMuted}
           />
-
-          <div className="flex items-center space-x-20 mt-14 mb-14">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-sm">bass</h1>
-              <Visualizer
-                audioUrl={genData.bass}
-                mute={isBassMuted}
-                onToggleMute={() => setBassMuted(!isBassMuted)}
-                isPlaying={isPlaying}
-              />
-            </div>
-            <Button
-              onClick={() => setIsPlaying(!isPlaying)}
-              size="icon"
-              variant="secondary"
-            >
-              {isPlaying ? (
-                <PauseIcon className="w-[1.2rem] h-[1.2rem]" />
-              ) : (
-                <PlayIcon className="w-[1.2rem] h-[1.2rem]" />
-              )}
-            </Button>
-            <div className="flex items-center space-x-4">
-              <Visualizer
-                audioUrl={genData.other}
-                mute={isOtherMuted}
-                onToggleMute={() => setOtherMuted(!isOtherMuted)}
-                isPlaying={isPlaying}
-              />
-              <h1 className="text-sm">other</h1>
-            </div>
-          </div>
-          <Visualizer
-            audioUrl={genData.drums}
-            mute={isDrumsMuted}
-            onToggleMute={() => setDrumsMuted(!isDrumsMuted)}
-            isPlaying={isPlaying}
-          />
-          <h1 className="text-sm">drums</h1>
         </div>
-
-        <Separator className="w-1/2 mx-auto mt-24" />
-        <UsageGuide />
       </section>
     </>
   );

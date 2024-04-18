@@ -76,7 +76,7 @@ export default function Visualizer({
         }
       }
 
-      const maxScaleCap = 1.5; // Maximum scale
+      const maxScaleCap = 1.5;
       const baseScale = 1;
       const newScale = Math.min(maxScaleCap, baseScale + maxVolume / 256);
 
@@ -89,12 +89,12 @@ export default function Visualizer({
   };
 
   const handleInteraction = (event) => {
-    event.preventDefault(); // Helps avoid any default behavior that might prevent audio from playing
-    onToggleMute(); // Ensures mute toggles on every click
-    initAudioAndPlay(); // Start playing or continue playing the audio
+    event.preventDefault();
+    onToggleMute();
+    initAudioAndPlay();
   };
 
-  const backgroundClass = mute ? "bg-muted" : "bg-primary";
+  const backgroundClass = mute ? "bg-muted-foreground" : "bg-primary";
 
   return (
     <div
@@ -103,7 +103,7 @@ export default function Visualizer({
         transform: `scale(${scale})`,
       }}
       className={`w-[50px] h-[50px] cursor-pointer rounded-full ${backgroundClass}`}
-      onClick={handleInteraction} // Using onClick to handle all interactions
+      onClick={handleInteraction}
     >
       <audio
         ref={audioRef}
