@@ -116,7 +116,7 @@ export default function Home() {
           <div className="mt-6" />
 
           {loading && (
-            <div className="bg-muted p-4 rounded-full space-y-2">
+            <div className="bg-muted p-4 rounded-lg space-y-2">
               <Loader />
               <p>Extracting stems. This may take a while...</p>
             </div>
