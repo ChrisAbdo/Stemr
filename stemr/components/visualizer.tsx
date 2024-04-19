@@ -21,10 +21,14 @@ export default function Visualizer({
   isPlaying,
   mute,
   onToggleMute,
+  onMouseDown,
+  onMouseUp,
 }: {
   audioUrl: string;
   mute: boolean;
   onToggleMute: () => void;
+  onMouseDown?: () => void;
+  onMouseUp?: () => void;
 }) {
   const audioRef = useRef(null);
   const audioContextRef = useRef(null);
@@ -108,6 +112,8 @@ export default function Visualizer({
       }}
       className={`w-[50px] h-[50px] cursor-pointer rounded-full ${backgroundClass}`}
       onClick={handleInteraction}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
     >
       <audio
         ref={audioRef}
