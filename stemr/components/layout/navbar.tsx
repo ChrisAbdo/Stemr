@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { ModeToggle } from "@/components/layout/mode-toggle";
 import { Button } from "../ui/button";
+import { AudioLines } from "lucide-react";
 
 export default function Navbar() {
   return (
@@ -30,9 +31,9 @@ export default function Navbar() {
       >
         <div className="flex items-center gap-x-12">
           <Link href="/" className="flex items-center space-x-2">
-            <ScissorsIcon className="h-5 w-5 text-foreground" />
+            <AudioLines className="h-5 w-5 text-foreground" />
             <span className="overflow-auto font-semibold leading-tight tracking-tight">
-              STEMMER
+              stemr
             </span>
           </Link>
         </div>

@@ -31,6 +31,15 @@ export default function StemPlayer({
   setOtherMuted: (value: boolean) => void;
 }) {
   return (
+    // const extractedStems = {
+    //   vocals:
+    //     "https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3",
+    //   drums:
+    //     "https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3",
+    //   bass: "https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3",
+    //   other:
+    //     "https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3",
+    // };
     <>
       <h1 className="text-sm">vocals</h1>
       <Visualizer

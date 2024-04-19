@@ -26,16 +26,6 @@ export default function Home() {
   const [isBassMuted, setBassMuted] = React.useState(false);
   const [isOtherMuted, setOtherMuted] = React.useState(false);
 
-  // const extractedStems = {
-  //   vocals:
-  //     "https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3",
-  //   drums:
-  //     "https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3",
-  //   bass: "https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3",
-  //   other:
-  //     "https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3",
-  // };
-
   const handleSubmit = async () => {
     setLoading(true);
     const response = await fetch(
@@ -90,7 +80,7 @@ export default function Home() {
         <div className="container flex flex-col items-center justify-center gap-2 px-4 text-center md:px-6">
           <div>
             <h1 className="text-3xl font-normal tracking-tighter sm:text-4xl md:text-5xl">
-              Your music, deconstructed.
+              your music, deconstructed.
             </h1>
           </div>
 
@@ -103,11 +93,11 @@ export default function Home() {
           <div className="flex flex-col mt-6 gap-2">
             <div className="flex gap-2">
               <MousePointer className="h-[1.2rem] w-[1.2rem]" />
-              <p className="text-sm">Press to mute/unmute stems</p>
+              <p className="text-sm">press to mute/unmute stems</p>
             </div>
             <div className="flex gap-2">
               <MousePointerClick className="h-[1.2rem] w-[1.2rem]" />
-              <p className="text-sm">Press and hold to isolate stems</p>
+              <p className="text-sm">press and hold to isolate stems</p>
             </div>
           </div>
 

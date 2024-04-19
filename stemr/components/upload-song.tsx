@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/drawer";
 import Uploader from "./uploader";
 import { Button } from "./ui/button";
-import { AudioLines } from "lucide-react";
+import { AudioLines, Music } from "lucide-react";
 
 export default function UploadSong({
   isDrawerOpen,
@@ -26,8 +26,8 @@ export default function UploadSong({
     <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
       <DrawerTrigger asChild>
         <Button className="mt-6">
-          <AudioLines className="h-[1.2rem] w-[1.2rem] mr-2" />
-          Upload Song
+          <Music className="h-[1.2rem] w-[1.2rem] mr-2" />
+          upload song
         </Button>
       </DrawerTrigger>
       <DrawerContent className="h-2/3">
