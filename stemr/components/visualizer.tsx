@@ -20,13 +20,12 @@ export default function Visualizer({
   audioUrl,
   isPlaying,
   mute,
-  onToggleMute,
   onMouseDown,
   onMouseUp,
 }: {
   audioUrl: string;
+
   mute: boolean;
-  onToggleMute: () => void;
   onMouseDown?: () => void;
   onMouseUp?: () => void;
 }) {
@@ -94,7 +93,6 @@ export default function Visualizer({
 
   const handleInteraction = (event) => {
     event.preventDefault();
-    onToggleMute();
     initAudioAndPlay();
   };
 

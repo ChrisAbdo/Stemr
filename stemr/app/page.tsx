@@ -17,7 +17,7 @@ import { toast } from "sonner";
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const [uploadedUrl, setUploadedUrl] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [genData, setGenData] = React.useState({} as any);
   const [isPlaying, setIsPlaying] = React.useState(false);
 
@@ -28,6 +28,7 @@ export default function Home() {
 
   const handleSubmit = async () => {
     setLoading(true);
+
     const response = await fetch(
       `https://stemr-production-f0bf.up.railway.app/?audioUrl=${uploadedUrl}`,
       {
@@ -37,6 +38,7 @@ export default function Home() {
         },
       }
     );
+
     const data = await response.json();
     setLoading(false);
     setGenData(data);
@@ -104,7 +106,7 @@ export default function Home() {
           <div className="mt-6" />
 
           {loading && (
-            <div className="bg-muted p-4 rounded-lg space-y-2">
+            <div className="bg-muted border p-4 rounded-lg space-y-2">
               <Loader />
               <p>Extracting stems. This may take a while...</p>
             </div>

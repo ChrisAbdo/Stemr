@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import React from "react";
 import Visualizer from "@/components/visualizer";
 import { Button } from "./ui/button";
@@ -31,7 +30,6 @@ export default function StemPlayer({
   setOtherMuted: (value: boolean) => void;
 }) {
   const [isIsolating, setIsIsolating] = React.useState(false);
-  const isolationTimeoutRef = React.useRef(null);
 
   const handleIsolate = (type: string, isIsolating: boolean) => {
     setIsIsolating(isIsolating);
@@ -40,61 +38,56 @@ export default function StemPlayer({
     setBassMuted(isIsolating && type !== "bass");
     setOtherMuted(isIsolating && type !== "other");
   };
+
+  let pressTimer: NodeJS.Timeout;
+
+  function createHandlers(type: string) {
+    const setMuted = {
+      vocals: setVocalsMuted,
+      drums: setDrumsMuted,
+      bass: setBassMuted,
+      other: setOtherMuted,
+    }[type];
+
+    return {
+      onMouseDown: (e: React.MouseEvent) => {
+        e.preventDefault();
+        pressTimer = setTimeout(() => handleIsolate(type, true), 500);
+      },
+      onMouseUp: () => {
+        if (pressTimer) {
+          clearTimeout(pressTimer);
+          setMuted((m) => !m);
+        } else {
+          if (isIsolating) {
+            handleIsolate(type, false);
+          }
+          setMuted(false);
+        }
+      },
+    };
+  }
+
   return (
-    // const extractedStems = {
-    //   vocals:
-    //     "https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3",
-    //   drums:
-    //     "https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3",
-    //   bass: "https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3",
-    //   other:
-    //     "https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3",
-    // };
     <>
       <h1 className="text-sm">vocals</h1>
       <Visualizer
-        // audioUrl={genData.vocals}
-        audioUrl="https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3"
+        audioUrl={genData.vocals}
+        // audioUrl="https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3"
         mute={isVocalsMuted}
-        onToggleMute={() => setVocalsMuted(!isVocalsMuted)}
         isPlaying={isPlaying}
-        onMouseDown={(e) => {
-          e.preventDefault();
-          isolationTimeoutRef.current = setTimeout(
-            () => handleIsolate("vocals", true),
-            1000
-          );
-        }}
-        onMouseUp={() => {
-          clearTimeout(isolationTimeoutRef.current);
-          if (isIsolating) {
-            handleIsolate("vocals", false);
-          }
-          setVocalsMuted(false);
-        }}
+        {...createHandlers("vocals")}
       />
 
       <div className="flex items-center space-x-20 mt-14 mb-14">
         <div className="flex items-center space-x-4">
           <h1 className="text-sm">bass</h1>
           <Visualizer
-            // audioUrl={genData.bass}
-            audioUrl="https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3"
+            audioUrl={genData.bass}
+            // audioUrl="https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3"
             mute={isBassMuted}
-            onToggleMute={() => setBassMuted(!isBassMuted)}
             isPlaying={isPlaying}
-            onMouseDown={() => {
-              isolationTimeoutRef.current = setTimeout(
-                () => handleIsolate("vocals", true),
-                1000
-              );
-            }}
-            onMouseUp={() => {
-              clearTimeout(isolationTimeoutRef.current);
-              if (isIsolating) {
-                handleIsolate("vocals", false);
-              }
-            }}
+            {...createHandlers("bass")}
           />
         </div>
         <Button
@@ -110,45 +103,21 @@ export default function StemPlayer({
         </Button>
         <div className="flex items-center space-x-4">
           <Visualizer
-            // audioUrl={genData.other}
-            audioUrl="https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3"
+            audioUrl={genData.other}
+            // audioUrl="https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3"
             mute={isOtherMuted}
-            onToggleMute={() => setOtherMuted(!isOtherMuted)}
             isPlaying={isPlaying}
-            onMouseDown={() => {
-              isolationTimeoutRef.current = setTimeout(
-                () => handleIsolate("vocals", true),
-                1000
-              );
-            }}
-            onMouseUp={() => {
-              clearTimeout(isolationTimeoutRef.current);
-              if (isIsolating) {
-                handleIsolate("vocals", false);
-              }
-            }}
+            {...createHandlers("other")}
           />
           <h1 className="text-sm">other</h1>
         </div>
       </div>
       <Visualizer
-        // audioUrl={genData.drums}
-        audioUrl="https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3"
+        audioUrl={genData.drums}
+        // audioUrl="https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3"
         mute={isDrumsMuted}
-        onToggleMute={() => setDrumsMuted(!isDrumsMuted)}
         isPlaying={isPlaying}
-        onMouseDown={() => {
-          isolationTimeoutRef.current = setTimeout(
-            () => handleIsolate("vocals", true),
-            1000
-          );
-        }}
-        onMouseUp={() => {
-          clearTimeout(isolationTimeoutRef.current);
-          if (isIsolating) {
-            handleIsolate("vocals", false);
-          }
-        }}
+        {...createHandlers("drums")}
       />
       <h1 className="text-sm">drums</h1>
     </>
