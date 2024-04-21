@@ -10,6 +10,17 @@ import { TailwindIndicator } from "@/components/tailwind-indicator";
 export const metadata: Metadata = {
   title: "Stemmer",
   description: "Your music, deconstructed.",
+  openGraph: {
+    title: "Stemmer",
+    description: "Your music, deconstructed.",
+  },
+  twitter: {
+    title: "Stemmer",
+    description: "Your music, deconstructed.",
+    card: "summary_large_image",
+    creator: "@chrisjabdo",
+  },
+  metadataBase: new URL("https://stemr.vercel.app"),
 };
 
 export default function RootLayout({
