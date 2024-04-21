@@ -1,9 +1,3 @@
-// @ts-nocheck
-/*
-
-https://replicate.delivery/pbxt/LflQA55n3fgD30ZTeg9Pgj8FO2AZt4UV4A25TgKCGwiDIjTlA/drums.mp3
-*/
-
 "use client";
 import React from "react";
 
@@ -17,7 +11,7 @@ import { toast } from "sonner";
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const [uploadedUrl, setUploadedUrl] = React.useState("");
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   const [genData, setGenData] = React.useState({} as any);
   const [isPlaying, setIsPlaying] = React.useState(false);
 

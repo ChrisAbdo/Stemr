@@ -3,13 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import {
-  EraserIcon,
   GitHubLogoIcon,
   QuestionMarkCircledIcon,
-  ScissorsIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
-
 import {
   Dialog,
   DialogContent,
@@ -37,15 +34,7 @@ export default function Navbar() {
             </span>
           </Link>
         </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          >
-            <span className="sr-only">Open main menu</span>
-            {/* <Menu className="h-6 w-6" aria-hidden="true" /> */}
-          </button>
-        </div>
+
         <div className="flex items-center space-x-1">
           <Dialog>
             <DialogTrigger asChild>
