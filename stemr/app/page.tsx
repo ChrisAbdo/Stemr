@@ -11,6 +11,7 @@ import DotPattern from "@/components/ui/dot-pattern";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -111,7 +112,18 @@ export default function Home() {
           {loading && (
             <div className="bg-muted border p-4 rounded-lg space-y-2">
               <Loader />
-              <p>Extracting stems. This may take a while...</p>
+              <span className="italic ">
+                deconstructing song. this may take a while depending on
+                the&nbsp;
+                <Link
+                  href="https://replicate.com/cjwbw/demucs"
+                  target="_blank"
+                  rel="noopener"
+                  className="underline"
+                >
+                  model.
+                </Link>
+              </span>
             </div>
           )}
 
