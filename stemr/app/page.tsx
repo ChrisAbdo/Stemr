@@ -9,6 +9,7 @@ import UploadSong from "@/components/upload-song";
 import { toast } from "sonner";
 import DotPattern from "@/components/ui/dot-pattern";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -93,18 +94,8 @@ export default function Home() {
             setUploadedUrl={setUploadedUrl}
           />
 
-          <div className="flex flex-col mt-6 gap-2 bg-muted p-2 rounded-lg">
-            <div className="flex gap-2">
-              <MousePointer className="h-[1.2rem] w-[1.2rem]" />
-              <p className="text-sm">press to mute/unmute stems</p>
-            </div>
-            <div className="flex gap-2">
-              <MousePointerClick className="h-[1.2rem] w-[1.2rem]" />
-              <p className="text-sm">press and hold to isolate stems</p>
-            </div>
-          </div>
-
-          <div className="mt-6" />
+          <div className="mt-2" />
+          <Badge variant="outline">J. Cole - Applying Pressure</Badge>
 
           {loading && (
             <div className="bg-muted border p-4 rounded-lg space-y-2">
@@ -126,6 +117,17 @@ export default function Home() {
             isOtherMuted={isOtherMuted}
             setOtherMuted={setOtherMuted}
           />
+
+          <div className="flex flex-col mt-6 gap-2 bg-muted p-2 rounded-lg">
+            <div className="flex gap-2">
+              <MousePointer className="h-[1.2rem] w-[1.2rem]" />
+              <p className="text-sm">press to mute/unmute stems</p>
+            </div>
+            <div className="flex gap-2">
+              <MousePointerClick className="h-[1.2rem] w-[1.2rem]" />
+              <p className="text-sm">press and hold to isolate stems</p>
+            </div>
+          </div>
         </div>
       </section>
     </>
