@@ -93,7 +93,7 @@ export default function Home() {
             setUploadedUrl={setUploadedUrl}
           />
 
-          <div className="flex flex-col mt-6 gap-2">
+          <div className="flex flex-col mt-6 gap-2 bg-muted p-2 rounded-lg">
             <div className="flex gap-2">
               <MousePointer className="h-[1.2rem] w-[1.2rem]" />
               <p className="text-sm">press to mute/unmute stems</p>
