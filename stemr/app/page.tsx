@@ -7,6 +7,8 @@ import { Loader } from "@/components/ui/loader";
 import StemPlayer from "@/components/stem-player";
 import UploadSong from "@/components/upload-song";
 import { toast } from "sonner";
+import DotPattern from "@/components/ui/dot-pattern";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -72,7 +74,12 @@ export default function Home() {
 
   return (
     <>
-      <section className="w-full mt-4">
+      <DotPattern
+        className={cn(
+          "[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]"
+        )}
+      />
+      <section className="w-full mt-4 z-50">
         <div className="container flex flex-col items-center justify-center gap-2 px-4 text-center md:px-6">
           <div>
             <h1 className="text-3xl font-normal tracking-tighter sm:text-4xl md:text-5xl">
