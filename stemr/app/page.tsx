@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import DotPattern from "@/components/ui/dot-pattern";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -81,7 +82,7 @@ export default function Home() {
         )}
       />
       <section className="w-full mt-4 z-50">
-        <div className="container flex flex-col items-center justify-center gap-2 px-4 text-center md:px-6">
+        <div className="container flex flex-col items-center justify-center gap-4 px-4 text-center md:px-6">
           <div>
             <h1 className="text-3xl font-normal tracking-tighter sm:text-4xl md:text-5xl">
               your music, deconstructed.
@@ -95,8 +96,18 @@ export default function Home() {
           />
 
           <div className="mt-2" />
-          <Badge variant="outline">J. Cole - Applying Pressure</Badge>
-
+          <div className="space-x-2">
+            <p className="text-sm text-muted-foreground mb-2">example tracks</p>
+            <Badge variant="secondary">
+              <span className="text-muted-foreground">J. Cole -</span>
+              &nbsp;Applying Pressure
+            </Badge>
+            <Badge variant="secondary">
+              <span className="text-muted-foreground">PinkPantheress -</span>
+              &nbsp;Pain
+            </Badge>
+          </div>
+          <div className="mb-2" />
           {loading && (
             <div className="bg-muted border p-4 rounded-lg space-y-2">
               <Loader />
@@ -118,11 +129,15 @@ export default function Home() {
             setOtherMuted={setOtherMuted}
           />
 
-          <div className="flex flex-col mt-6 gap-2 bg-muted p-2 rounded-lg">
+          <div className="flex flex-col md:flex-row items-center mt-6 gap-2 md:gap-6 bg-background border p-2 rounded-lg">
             <div className="flex gap-2">
               <MousePointer className="h-[1.2rem] w-[1.2rem]" />
               <p className="text-sm">press to mute/unmute stems</p>
             </div>
+            <Separator
+              orientation="vertical"
+              className="hidden md:block h-4 bg-muted/80"
+            />
             <div className="flex gap-2">
               <MousePointerClick className="h-[1.2rem] w-[1.2rem]" />
               <p className="text-sm">press and hold to isolate stems</p>
