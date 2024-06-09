@@ -91,9 +91,9 @@ export default function StemPlayer({
           />
         </div>
         <Button
-           disabled={
-             !genData.vocals || !genData.drums || !genData.bass || !genData.other
-           }
+           //disabled={
+           //  !genData.vocals || !genData.drums || !genData.bass || !genData.other
+           //}
           onClick={() => setIsPlaying(!isPlaying)}
           size="icon"
           variant="secondary"
