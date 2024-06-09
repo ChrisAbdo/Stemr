@@ -97,17 +97,7 @@ export default function Home() {
           />
 
           <div className="mt-2" />
-          <div className="space-x-2">
-            <p className="text-sm text-muted-foreground mb-2">example tracks</p>
-            <Badge variant="secondary">
-              <span className="text-muted-foreground">J. Cole -</span>
-              &nbsp;Applying Pressure
-            </Badge>
-            <Badge variant="secondary">
-              <span className="text-muted-foreground">PinkPantheress -</span>
-              &nbsp;Pain
-            </Badge>
-          </div>
+          
           <div className="mb-2" />
           {loading && (
             <div className="bg-muted border p-4 rounded-lg space-y-2">
