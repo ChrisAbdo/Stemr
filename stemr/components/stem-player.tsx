@@ -72,8 +72,8 @@ export default function StemPlayer({
     <>
       <h1 className="text-sm">vocals</h1>
       <Visualizer
-         audioUrl={genData.vocals}
-        //audioUrl="https://replicate.delivery/pbxt/1gSfimMQQXUjJq0cvf9SF75brz4dAjamrv2dSIop77KyKfUlA/vocals.mp3"
+        // audioUrl={genData.vocals}
+        audioUrl="https://replicate.delivery/czjl/fwK2HKmfGUmYmUvlwS0bCSL9jNea2GPWbb2YIO4TI95fYxyLB/vocals.mp3"
         mute={isVocalsMuted}
         isPlaying={isPlaying}
         {...createHandlers("vocals")}
@@ -83,8 +83,8 @@ export default function StemPlayer({
         <div className="flex items-center space-x-4">
           <h1 className="text-sm">bass</h1>
           <Visualizer
-             audioUrl={genData.bass}
-            //audioUrl="https://replicate.delivery/pbxt/f8MYlycITaS2X68pMxfL2fCZr0JHNb5IjeAVf8jGfOZssynqE/bass.mp3"
+             //audioUrl={genData.bass}
+            audioUrl="https://replicate.delivery/czjl/S9bYTL5MFHKSHBQGwrLRLpPeKwPeA3bHZf5emqytnpXfxilXC/bass.mp3"
             mute={isBassMuted}
             isPlaying={isPlaying}
             {...createHandlers("bass")}
@@ -107,8 +107,8 @@ export default function StemPlayer({
         </Button>
         <div className="flex items-center space-x-4">
           <Visualizer
-             audioUrl={genData.other}
-            //audioUrl="https://replicate.delivery/pbxt/V9NLOgeGpV2hG6RYXuNJma8DZ8wAnLRpA6DjrKopnkeyKfUlA/other.mp3"
+             //audioUrl={genData.other}
+            audioUrl="https://replicate.delivery/czjl/qX92fjAaHmWUQKDRrBnxogURxY11BZrJdFYoYpsrjN0HLWeSA/other.mp3"
             mute={isOtherMuted}
             isPlaying={isPlaying}
             {...createHandlers("other")}
@@ -117,8 +117,8 @@ export default function StemPlayer({
         </div>
       </div>
       <Visualizer
-         audioUrl={genData.drums}
-        //audioUrl="https://replicate.delivery/pbxt/heGVOwwfnpueRocVAZJnid05blF5exIawzaehBwxNfgisynqE/drums.mp3"
+         //audioUrl={genData.drums}
+        audioUrl="https://replicate.delivery/czjl/2FB1fuNUHOzwWitzG1peveWreTt9aNKDzewDVaWOc1U6xilXC/drums.mp3"
         mute={isDrumsMuted}
         isPlaying={isPlaying}
         {...createHandlers("drums")}
